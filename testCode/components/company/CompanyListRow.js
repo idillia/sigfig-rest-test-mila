@@ -1,11 +1,13 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
+import CompanyPage from './companyPage';
 
 const CompanyListRow = ({company}) => {
   return (
     <div className = "card">
       <div className = "card-header card-title">
-        <Link to={'/company/' + company._id}>{company.name}</Link>  </div>
+        <Link to={'/company/' + company._id}><h1>{company.name}</h1></Link>
+        <Link to={'/edit/company/' + company._id}>Edit</Link></div>
       <div className = "card-block">
         <span>Address</span>
         <p className = "card-text">{company.address}</p>

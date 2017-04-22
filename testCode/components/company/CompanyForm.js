@@ -1,5 +1,6 @@
 import React from 'react';
 import TextInput from '../common/TextInput';
+import NumberInput from '../common/NumberInput';
 import SelectInput from '../common/SelectInput';
 
 const CompanyForm = ({company,onSave, onChange, saving, errors}) => {
@@ -27,7 +28,7 @@ const CompanyForm = ({company,onSave, onChange, saving, errors}) => {
         onChange={onChange}
         error={errors.phone} /> 
 
-      <TextInput
+      <NumberInput
         name="revenue"
         label="Revenue"
         value={company.revenue}

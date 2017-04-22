@@ -12,7 +12,7 @@ class CompaniesPage extends React.Component {
   }
 
   redirectToAddCompanyPage() {
-    browserHistory.push('/company');
+    browserHistory.push('/edit/company');
   }
 
   render() {

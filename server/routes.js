@@ -14,32 +14,33 @@ module.exports = function(app){
      *       - application/json
      *     responses:
      *       200:
-     *         description: An array of Companies
+     *         description: All Companies
      *         schema:
+     *           type: array
      *           $ref: '#/definitions/Company'
      */
     app.get('/companies', company.findAll);
 
     /**
      * @swagger
-     * /companies/{id}:
-     *   get:
-     *      tags:
-     *        - Companies
-     *      description: Returns a single Mopaly
-     *      produces:
-     *        - application/json
-     *      parameters:
-     *        - name: id
-     *          description: Company's id
-     *          in: path
-     *          required: true
-     *          type: string
-     *      responses:
-     *          200:
-     *              description: a single company
-     *              schema:
-     *                  $ref: '#/definitions/Company'
+     * /companies/{companyId}:
+     *  get:
+     *    tags:
+     *      - Companies
+     *    description: Returns a single Company
+     *    produces:
+     *      - application/json
+     *    parameters:
+     *      - name: companyId
+     *        description: Company Id
+     *        in: path
+     *        required: true
+     *        type: string
+     *    responses:
+     *      200:
+     *        description: A single company
+     *        schema:
+     *          $ref: '#/definitions/Company'
      */
     app.get('/companies/:id', company.findById);
 
@@ -55,45 +56,48 @@ module.exports = function(app){
      *       - application/json
      *     parameters:
      *       - name: company
+     *         description: Company Object
+     *         in: body
+     *         required: true
+     *         type: object
+     *         schema:
+     *           $ref: '#/definitions/Company'
+     *     responses:
+     *       200:
+     *         description: A single company
+     *         schema:
+     *           $ref: '#/definitions/Company'
+     */
+     app.post('/companies', company.add);
+
+    /**
+     * @swagger
+     * /companies/{companyId}:
+     *   put:
+     *     tags:
+     *       - Companies
+     *     description: Updates a single company
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: company
      *         description: Company object
      *         in: body
      *         required: true
      *         schema:
      *           $ref: '#/definitions/Company'
+     *       - name: companyId
+     *         description: Company Id
+     *         in: path
+     *         required: true
+     *         type: string
      *     responses:
      *       200:
-     *         description: Successfully created
+     *         description: A single compnay
+     *         schema:
+     *           $ref: '#/definitions/Company'
      */
-	app.post('/companies', company.add);
-
-    /**
-     * @swagger
-     * /companies/{id}:
-     *    put:
-     *      tags:
-     *        - Companies
-     *      description: Updates a single company
-     *      produces:
-     *        - application/json
-     *      parameters:
-     *        - name: company
-     *          description: Company object
-     *          in: body
-     *          required: true
-     *          schema:
-     *            $ref: '#/definitions/Company'
-     *        - name: id
-     *          description: Company's id
-     *          in: path
-     *          required: true
-     *          type: string
-     *      responses:
-     *        200:
-     *          description: Successfully updated
-     *          
-     *           
-     */
-	app.put('/companies/:id', company.update);
+     app.put('/companies/:id', company.update);
 
     /**
      * @swagger
@@ -101,7 +105,7 @@ module.exports = function(app){
      *   get:
      *     tags:
      *       - Companies
-     *     description: Create test test companies
+     *     description: Imports all companies
      *     produces:
      *       - application/json
      *     responses:
@@ -123,36 +127,42 @@ module.exports = function(app){
      *     description: Returns all People associated to a company
      *     produces:
      *       - application/json
+     *     parameters:
+     *       - name: companyId
+     *         description: Company Id
+     *         in: path
+     *         required: true
+     *         type: string
      *     responses:
      *       200:
      *         description: An array of People
      *         schema:
      *           $ref: '#/definitions/Person'
      */
-	app.get('/companies/:companyId/people', person.findByCompanyId);
+     app.get('/companies/:companyId/people', person.findByCompanyId);
 
     /**
      * @swagger
-     * /person/{id}:
+     * /person/{personId}:
      *  get:
-     *      tags:
-     *          - People
-     *      description: Returns a single Person
-     *      produces:
-     *          - application/json
-     *      parameters:
-     *          -name: id
-     *          description: Person's id
-     *          in: path
-     *          required: true
-     *          type: string
-     *      responses:
-     *          200:
-     *              description: a single Person
-     *              schema:
-     *                  $ref: '#/definitions/Person'
+     *    tags:
+     *      - People
+     *    description: Returns a single Person
+     *    produces:
+     *      - application/json
+     *    parameters:
+     *      - name: personId
+     *        description: Person Id
+     *        in: path
+     *        required: true
+     *        type: string
+     *    responses:
+     *      200:
+     *        description: A single Person
+     *        schema:
+     *          $ref: '#/definitions/Person'
      */
-	app.get('/person/:id', person.findByPersonId);
+     app.get('/person/:id', person.findByPersonId);
 
     /**
      * @swagger
@@ -172,13 +182,15 @@ module.exports = function(app){
      *           $ref: '#/definitions/Person'
      *     responses:
      *       200:
-     *         description: Successfully created
+     *         description: A single Person
+     *         schema:
+     *           $ref: '#/definitions/Person'
      */
-	app.post('/person', person.add);
+     app.post('/person', person.add);
 
     /**
      * @swagger
-     * /person:
+     * /person/{personId}:
      *   put:
      *     tags:
      *       - People
@@ -192,39 +204,41 @@ module.exports = function(app){
      *         required: true
      *         schema:
      *           $ref: '#/definitions/Person'
-     *       - name: companyId
+     *       - name: personId
      *         description: Person Id
      *         in: path
      *         required: true
      *         type: string
      *     responses:
      *       200:
-     *         description: Successfully created
+     *         description: A single Person
+     *         schema:
+     *           $ref: '#/definitions/Person'
      */    
-	app.put('/person/:id', person.update);
+     app.put('/person/:id', person.update);
 
     /**
      * @swagger
-     * /person/{id}:
-     *  delete:
-     *      tags:
-     *          - People
-     *      description: Deletes a single Person
-     *      produces:
-     *          - application/json
-     *      parameters:
-     *          -name: id
-     *          description: Person's id
-     *          in: path
-     *          required: true
-     *          type: string
-     *      responses:
-     *          200:
-     *              description: a single Person
-     *              schema:
-     *                  $ref: '#/definitions/Person'
+     * /person/{personId}:
+     *   delete:
+     *     tags:
+     *       - People
+     *     description: Deletes a single Persxon
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: personId
+     *         description: Person Id
+     *         in: path
+     *         required: true
+     *         type: string
+     *     responses:
+     *       200:
+     *         description: A single Person
+     *         schema:
+     *           $ref: '#/definitions/Person'
      */
-	app.delete('/person/:id', person.delete);
+     app.delete('/person/:id', person.delete);
 
     /**
      * @swagger
@@ -232,22 +246,23 @@ module.exports = function(app){
      *   get:
      *     tags:
      *       - People
-     *     description: Creates test person data for the given company id
+     *     description: Imports people for given company id
      *     produces:
      *       - application/json
      *     parameters:
-     *          -name: companyId
-     *          description: company's id
-     *          in: path
-     *          required: true
-     *          type: string
+     *       - name: companyId
+     *         description: Compnay Id
+     *         in: path
+     *         required: true
+     *         type: string
      *     responses:
      *       200:
      *         description: An array of People
      *         schema:
+     *           type: array
      *           $ref: '#/definitions/Person'
      */
-	app.get('/importPeopleForCompany/:companyId', person.import);
+     app.get('/importPeopleForCompany/:companyId', person.import);
 
     //swagger docs routes
     // serve swagger

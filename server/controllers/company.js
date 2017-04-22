@@ -42,8 +42,7 @@ exports.update = function(req, res) {
 		if (err) {
 			return console.log("update error", err);
 		} 
-		console.log('updated companies', numberAffected);
-
+    console.log('updated %d companies', numberAffected["nModified"]);
 		return res.send(200);
 	});
 };
