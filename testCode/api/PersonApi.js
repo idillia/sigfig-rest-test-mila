@@ -2,32 +2,22 @@ import delay from './delay';
 import axios from 'axios';
 
 
-
-const people = [
-  {
-    id: 'cory-house',
-    firstName: 'Cory',
-    lastName: 'House'
-  },
-  {
-    id: 'scott-allen',
-    firstName: 'Scott',
-    lastName: 'Allen'
-  },
-  {
-    id: 'dan-wahlin',
-    firstName: 'Dan',
-    lastName: 'Wahlin'
-  }
-];
-
 const generateId = (person) => {
   return person.firstName.toLowerCase() + '-' + person.lastName.toLowerCase();
 };
 
 class PersonApi {
-  static getAllPeople() {
+  static getAllPeople(people) {
     return new Promise((resolve, reject) => {
+      var url = 'http://localhost:3001/companies/'+ '58fa7087413f4c0aa21e4f33' + '/people'
+      axios.get(url)
+        .then(function (response) {
+          resolve(Object.assign([], response.data));
+          console.log("get all people", response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
 
     });
    

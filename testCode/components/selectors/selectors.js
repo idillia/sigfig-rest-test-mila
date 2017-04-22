@@ -1,8 +1,8 @@
-export  function peopleFormattedForDropdown(people) { 
-  return people.map(person => {
+export  function companiesFormattedForDropdown(companies) { 
+  return companies.map(company => {
     return {
-      value: person.id,
-      text: person.firstName + ' ' + person.lastName
+      value: company.id,
+      text: company.name
     };
   });
 }

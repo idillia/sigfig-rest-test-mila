@@ -13,27 +13,20 @@ const generateId = (course) => {
 class CompanyApi {
   static getAllCompanies() {
     return new Promise((resolve, reject) => {
-      axios.get('http://localhost:3001/companies')
-      .then(function (response) {
-        resolve(Object.assign([], response.data));
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+
 
     });
   }
 
   static saveCompany(company) {
     company = Object.assign({}, company); // to avoid manipulating object passed in.
-      console.log("company in API", company)
+      // console.log("company in API", company)
       return new Promise((resolve, reject) => {
         if(company._id) {    
           var url = 'http://localhost:3001/companies/' + company._id;
           axios.put(url, { name: company.name, address: company.address, phone: company.phone, revenue: company.revenue})
             .then(function(response){
-              console.log('compnay updated', response.data)
+              // console.log('compnay updated', response.data)
             }).catch(function (error) {
               console.log(error);
             })
@@ -44,7 +37,7 @@ class CompanyApi {
         var url = 'http://localhost:3001/companies/';
         axios.post(url, { name: company.name, address: company.address, phone: company.phone, revenue: company.revenue})
           .then(function(response){
-          console.log('company posted', response.data)
+          // console.log('company posted', response.data)
         }).catch(function (error) {
         console.log(error);
       })  

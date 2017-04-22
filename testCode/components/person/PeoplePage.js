@@ -8,7 +8,7 @@ import {browserHistory} from 'react-router';
 class PeoplePage extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.redirectToAddPersonPage = this.redirectToPersonPage.bind(this);
+    this.redirectToAddPersonPage = this.redirectToAddPersonPage.bind(this);
   }
 
   redirectToAddPersonPage() {
@@ -21,10 +21,11 @@ class PeoplePage extends React.Component {
       <div>
         <h1>List of people</h1>
         <input type="submit"
-               value="Add Company"
+               value="Add Person"
                className="btn btn-primary"
                onClick={this.redirectToAddPersonPage} />
         <PersonList people={people} />
+
       </div>
     );
   }

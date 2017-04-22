@@ -91,7 +91,7 @@ export class ManageCompanyPage extends React.Component {
 ManageCompanyPage.propTypes = {
   company: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
-  people: PropTypes.array.isRequired
+  // people: PropTypes.array.isRequired
 };
 
 ManageCompanyPage.contextTypes = {
