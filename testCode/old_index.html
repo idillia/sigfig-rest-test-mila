@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h1>Sigfig front end programming test</h1>
+			</div>	
+			<div class="panel-body">	
+				<p>
+					Coding front ends connected to REST apis is a huge component of being a front end developer at SigFig. This part of our interview process is meant to simulate part of an average day for our developers. Code this like you would at work, we want to see how you structure and organize your code to build a working application. 
+				</p>
+				<p>
+				</p>
+				<p>
+					<h3>Expected functionality:</h3>
+					<ol>
+						<li>Show a list of companies</li>
+						<li>Show the details/full record of an existing company</li>
+						<li>Create a new company</li>
+						<li>Edit an existing company's record</li>
+						<li>Show a list of people who work at a given company</li>
+						<li>Show the details for a specific person</li>
+						<li>Edit a person's record</li>
+						<li>Delete a person record</li>
+						<li>Create a new person, associating them to an existing company</li>
+						<li>Bonus: make the site responsive
+					</ol>
+					We have two utility methods to create some test data for you, accesible via HTTP GET:
+					<a href="/swagger/index.html#!/Companies/get_importCompanies">Create test companies</a> | <a href="/swagger/index.html#!/People/get_importPeopleForCompany_companyId">Import people for a given company</a>
+
+				</p>
+				<p>
+					<a href="/swagger/index.html">Full REST api docs here</a> 
+				</p>
+				<p>
+					Below are some UI screenshots showing a finished solution, using Angular1 and Bootstrap for css. You may use these screenshots as a ui mock, or come up with a ui of your own.
+				</p>
+
+				<div class="panel panel-info">
+					<div class="panel-heading">Company List</div>
+					<div class="panel-body">
+						<a href="uiMocks/homepage.png">
+							<img src="uiMocks/homepage.png" width="640" />
+						</a>
+					</div>
+				</div>
+				<div class="panel panel-info">
+					<div class="panel-heading">Company Detail</div>
+					<div class="panel-body">
+						<a href="uiMocks/companyDetail.png">
+							<img src="uiMocks/companyDetail.png" width="640"/>
+						</a>
+					</div>
+				</div>
+				<div class="panel panel-info">
+					<div class="panel-heading">Company's People</div>
+					<div class="panel-body">
+						<a href="uiMocks/homepage.png">
+							<img src="uiMocks/homepage.png" width="640"/>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
