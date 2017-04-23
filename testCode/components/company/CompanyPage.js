@@ -2,16 +2,30 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as companyActions from '../../actions/companyActions';
+import * as personActions from '../../actions/personActions';
 import toastr from 'toastr';
 import {Link} from 'react-router';
+import {browserHistory} from 'react-router';
+
 
 export class CompanyPage extends React.Component {
-  componentDidlMount() {
-    console.log("cdm")
-    // this.props.dispatch(loadOneCompany(this.props.params.id))
+  constructor(props, context) {
+    super(props, context);
+
+    // this.loadPeople = this.loadPeople.bind(this);
+    this.onClickSave = this.onClickSave.bind(this);
+  }
+onClickSave() {
+  console.log(this.state)
+  console.log(this.props)
+    this.props.dispatch(personActions.loadPeople(this.props.params.id))
+        browserHistory.push('/companies/' + this.props.company._id + '/people');
+
   }
  
   render() {
+    // console.log(this.state)
+    // console.log(this.props)
     const company = this.props.company;
     return (
     <div className = "card">
@@ -28,7 +42,8 @@ export class CompanyPage extends React.Component {
         <p className = "card-text">{company.phone}</p>
       </div>
       <div className = "card-footer text-muted">
-      <Link to={'/companies/' + company._id + '/people'}>See who works there</Link>
+              <button type="submit" onClick={this.onClickSave}>Get People</button>
+<Link to={'/companies/' + company._id + '/people'}>See who works there</Link>
       </div>
     </div>
     );
@@ -43,7 +58,7 @@ function getCompanyById(companies, id) {
 }
 
 function mapStateToProps(state, ownProps) {
-  console.log(state)
+  // console.log(state)
   const companyId = ownProps.params.id;
   let company = {address: '', name: '', phone: '', revenue: '', _id: ''};
 

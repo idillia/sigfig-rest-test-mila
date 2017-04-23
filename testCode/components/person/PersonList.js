@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import PersonListRow from './PersonListRow';
 
 const PersonList = ({people}) => {
+  console.log("PersonList", people)
   return (
     <div>
         {people.map(person => 

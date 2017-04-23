@@ -4,28 +4,74 @@ import {bindActionCreators} from 'redux';
 import * as personActions from '../../actions/personActions';
 import PersonList from './PersonList';
 import {browserHistory} from 'react-router';
+import Test from './test'
+import {Link} from 'react-router';
+
 
 class PeoplePage extends React.Component {
 
-  componentWilllMount() {
-    console.log("dispatch:loadPeople")
-    this.props.dispatch(loadPeople(this.props.params.id))
+    constructor(props, context) {
+    super(props, context);
+    this.state = {
+      people: Object.assign({}, this.props.people),
+      errors: {},
+      saving: false
+    };
+
+    // this.loadPeople = this.loadPeople.bind(this);
+    // this.onClickSave = this.onClickSave.bind(this);
+  }
+  componentDidMount() {
+    // if (__CLIENT__) {
+    //     // initialize google map here
+
+    // }
+    console.log("hello")
+        this.props.dispatch(personActions.loadPeople(this.props.params.id))
+
+}
+
+
+  componentWillReceiveProps(nextProps) {
+    console.log("nextPR", nextProps)
+        if(this.props.people != nextProps.people) {
+
+      this.setState({people: Object.assign({}, nextProps.people)});
+    }
   }
 
+    componentWillUpdate(nextProps, nextState) {
+      if(this.props != nextProps) {
+              console.log("cwu", nextProps)
+
+      }
+    }
+
+
+
+
+
+
+
   render() {
-    // console.log(this.props.params.id)
-    const {people} = this.props;
+    // const people= "help";
+
+    if (this.props.people[0] != "undefiend"){
+      console.log("this.props", this.props.people)
+       const {people} = this.props;
+
+    }
+       const {people} = this.props;
+
+        console.log("statew", this.state)
+          var a = this.props.people
+          console.log("tp",  a)
     return (
-      <div className = "card">
-        <h2 className ="card-header">People</h2> 
-        <div type="submit" value="Add Person" className="card-header" onClick={this.redirectToAddPersonPage}>Add Person</div>
-        <div className="card-block">
-          <PersonList people={people} />
-        </div>
-      </div>
+      <div><PersonList people={people} /></div>
     );
   }
 }
+
 
 PeoplePage.propTypes = {
   people: PropTypes.array.isRequired
@@ -33,11 +79,11 @@ PeoplePage.propTypes = {
 
 function mapStateToProps(state, ownProps) {
   console.log("state in PeoplePage", state)
-  console.log("ownProps in PeoplePage", ownProps)
-  // let person = {name: '', email: '', _id: ''};
+
   return {
     people: state.people
   };
 }
 
+// export default PeoplePage;
 export default connect(mapStateToProps)(PeoplePage);

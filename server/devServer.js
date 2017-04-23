@@ -1,5 +1,6 @@
 import express from 'express';
 // var bodyParser = require('body-parser');
+var serveStatic = require('serve-static')
 
 var cors = require('cors');
 
@@ -24,6 +25,11 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+// app.use(serveStatic('public/ftp', {'index': ['default.html', 'default.htm']}))
+// app.use(serveStatic(path.join(__dirname, '../testCode/')))
+
+
+  // app.use(express.static(path.join(__dirname, '../testCode/')));
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '../testCode/index.html'));
