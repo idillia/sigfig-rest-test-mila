@@ -17,7 +17,9 @@ export default function companyReducer(state = initialState.companies, action) {
         ...state.filter(company => company.id !== action.companies.id),
         Object.assign({}, action.companies)
       ];   
-      
+    case types.LOAD_ONE_COMPANY_SUCCESS: 
+      return action.companies;  
+
     default:
       return state;
   }

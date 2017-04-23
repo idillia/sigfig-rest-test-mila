@@ -14,10 +14,11 @@ export function updatePersonSuccess(people) {
   return {type: types.UPDATE_PERSON_SUCCESS, people};
 }
 
-export function loadPeople() {
+export function loadPeople(companyId) {
+  console.log("gets called")
   return dispatch => {
     dispatch(beginAjaxCall());
-    return personApi.getAllPeople().then(people => {
+    return personApi.getAllPeople(companyId).then(people => {
       dispatch(loadPeopleSuccess(people));
     }).catch(error => {
       throw(error);

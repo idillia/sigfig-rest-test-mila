@@ -7,9 +7,9 @@ const generateId = (person) => {
 };
 
 class PersonApi {
-  static getAllPeople(people) {
+  static getAllPeople(companyId) {
     return new Promise((resolve, reject) => {
-      var url = 'http://localhost:3001/companies/'+ '58fa7087413f4c0aa21e4f33' + '/people'
+      var url = 'http://localhost:3001/companies/' + companyId + '/people'
       axios.get(url)
         .then(function (response) {
           resolve(Object.assign([], response.data));
@@ -18,7 +18,6 @@ class PersonApi {
         .catch(function (error) {
           console.log(error);
         });
-
     });
    
   }

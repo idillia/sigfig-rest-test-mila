@@ -6,7 +6,7 @@ import CompaniesPage from './components/company/CompaniesPage';
 import PeoplePage from './components/person/PeoplePage';
 import ManageCompanyPage from './components/company/ManageCompanyPage'; //eslint-disable-line import/no-named-as-default
 import ManagePersonPage from './components/person/ManagePersonPage'; //eslint-disable-line import/no-named-as-default
-// import CompanyPage from './components/company/CompanyPage'; //eslint-disable-line import/no-named-as-default
+import CompanyPage from './components/company/CompanyPage'; //eslint-disable-line import/no-named-as-default
 
 export default (
   <Route path="/" component={App}>
@@ -15,9 +15,10 @@ export default (
     <Route path="companies" component={CompaniesPage} />
     <Route path="edit/company" component={ManageCompanyPage} />
     <Route path="edit/company/:id" component={ManageCompanyPage} />
-    <Route path="edit/person" component={ManagePersonPage} />
     <Route path="edit/person/:id" component={ManagePersonPage} />
+
+    <Route path="company/:id" component={CompanyPage} />
   </Route>  
 );
 
-    // <Route path="company/:id" component={CompanyPage} />
+    // <Route path="edit/person" component={ManagePersonPage} />

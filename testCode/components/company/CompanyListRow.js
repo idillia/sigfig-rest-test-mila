@@ -6,8 +6,9 @@ const CompanyListRow = ({company}) => {
   return (
     <div className = "card">
       <div className = "card-header card-title">
-        <Link to={'/company/' + company._id}><h1>{company.name}</h1></Link>
-        <Link to={'/edit/company/' + company._id}>Edit</Link></div>
+        <Link to={'/company/' + company._id}><h3>{company.name}</h3></Link>
+        <Link to={'/edit/company/' + company._id}>Edit</Link>
+      </div>
       <div className = "card-block">
         <span>Address</span>
         <p className = "card-text">{company.address}</p>
@@ -17,7 +18,7 @@ const CompanyListRow = ({company}) => {
         <p className = "card-text">{company.phone}</p>
       </div>
       <div className = "card-footer text-muted">
-        See who works there
+      <Link to={'/companies/' + company._id + '/people'}>See who works there</Link>
       </div>
     </div>
   );

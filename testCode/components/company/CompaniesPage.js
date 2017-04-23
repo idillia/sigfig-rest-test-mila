@@ -18,14 +18,16 @@ class CompaniesPage extends React.Component {
   render() {
     const {companies} = this.props;
     return (
-      <div>
-        <h1>Hello</h1>
-        <input type="submit"
-               value="Add Company"
-               className="btn btn-primary"
-               onClick={this.redirectToAddCompanyPage} />
-        <CompanyList companies={companies} />
-      </div>
+      <div className = "card">
+        <h2 className ="card-header">Companies</h2> 
+        <div type="submit"
+                 value="Add Company"
+                 className="card-header"
+                 onClick={this.redirectToAddCompanyPage}>Add Company</div>
+        <div className="card-block">
+          <CompanyList companies={companies} />
+        </div>
+      </div>  
     );
   }
 }

@@ -6,48 +6,38 @@ import PersonList from './PersonList';
 import {browserHistory} from 'react-router';
 
 class PeoplePage extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.redirectToAddPersonPage = this.redirectToAddPersonPage.bind(this);
-  }
 
-  redirectToAddPersonPage() {
-    browserHistory.push('/edit/person');
+  componentWilllMount() {
+    console.log("dispatch:loadPeople")
+    this.props.dispatch(loadPeople(this.props.params.id))
   }
 
   render() {
+    // console.log(this.props.params.id)
     const {people} = this.props;
     return (
-      <div>
-        <h1>List of people</h1>
-        <input type="submit"
-               value="Add Person"
-               className="btn btn-primary"
-               onClick={this.redirectToAddPersonPage} />
-        <PersonList people={people} />
-
+      <div className = "card">
+        <h2 className ="card-header">People</h2> 
+        <div type="submit" value="Add Person" className="card-header" onClick={this.redirectToAddPersonPage}>Add Person</div>
+        <div className="card-block">
+          <PersonList people={people} />
+        </div>
       </div>
     );
   }
 }
 
 PeoplePage.propTypes = {
-  people: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+  people: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
+  console.log("state in PeoplePage", state)
+  console.log("ownProps in PeoplePage", ownProps)
+  // let person = {name: '', email: '', _id: ''};
   return {
     people: state.people
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(personActions, dispatch)
-  };
-}
-
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(PeoplePage);
+export default connect(mapStateToProps)(PeoplePage);

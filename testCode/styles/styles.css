@@ -13,3 +13,12 @@ a.active {
 nav {
   padding-top: 20px;
 }
+
+.card {
+  margin-bottom: 15px ! important;
+}
+
+.card-block > span {
+  font-weight: bold ! important;
+}
+

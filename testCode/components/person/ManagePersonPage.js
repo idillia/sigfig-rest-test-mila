@@ -48,8 +48,6 @@ export class ManagePersonPage extends React.Component {
 
   savePerson(event) {
     event.preventDefault();
-    console.log("save clicked")
-
     if(!this.companyFormIsValid()) {
       return;
     }
@@ -104,7 +102,7 @@ function getPersonById(people, id) {
 
 function mapStateToProps(state, ownProps) {
   const personId = ownProps.params.id;
-  let person = {address: '', name: '', phone: '', revenue: '', _id: ''};
+  let person = {name: '', email: '', _id: ''};
 
   if(personId && state.people.length > 0) {
     person = getPersonById(state.people, personId);

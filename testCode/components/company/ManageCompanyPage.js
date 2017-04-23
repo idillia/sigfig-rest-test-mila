@@ -4,7 +4,6 @@ import {bindActionCreators} from 'redux';
 import * as companyActions from '../../actions/companyActions';
 import CompanyForm from './CompanyForm';
 import toastr from 'toastr';
-import {peopleFormattedForDropdown} from '../selectors/selectors';
 
 
 export class ManageCompanyPage extends React.Component {
@@ -48,8 +47,6 @@ export class ManageCompanyPage extends React.Component {
 
   saveCompany(event) {
     event.preventDefault();
-    console.log("save clicked")
-
     if(!this.companyFormIsValid()) {
       return;
     }
@@ -60,24 +57,19 @@ export class ManageCompanyPage extends React.Component {
       .catch(error => {
         toastr.error(error);
         this.setState({saving: false});
-
       });
   }
 
   redirect() {
-    console.log(this.context.router)
     this.setState({saving: false});
     toastr.success('Company saved');
-     window.location.reload()  
+    window.location.reload()  
     this.context.router.push('/companies');
-    // window.location.href = "http://localhost:3002//companies"
   }
  
   render() {
-    console.log("this.state", this.state)
     return (
         <CompanyForm 
-          allPeople={this.props.people}
           onChange={this.updateCompanyState}
           onSave={this.saveCompany}
           company={this.state.company}
@@ -91,7 +83,6 @@ export class ManageCompanyPage extends React.Component {
 ManageCompanyPage.propTypes = {
   company: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
-  // people: PropTypes.array.isRequired
 };
 
 ManageCompanyPage.contextTypes = {
@@ -113,8 +104,7 @@ function mapStateToProps(state, ownProps) {
   }
 
   return {
-    company: company,
-    people: peopleFormattedForDropdown(state.people)
+    company: company
   };
 }
 

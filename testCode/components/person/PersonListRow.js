@@ -14,7 +14,7 @@ const PersonListRow = ({person}) => {
         <p className = "card-text">{person.email}</p>
       </div>
       <div className = "card-footer text-muted">
-        Back to company
+        <Link to={'/companies/'}>Back to list of companies</Link>
       </div>
     </div>
   );

@@ -14,6 +14,10 @@ export function updateCompanySuccess(companies) {
   return {type: types.UPDATE_COMPANY_SUCCESS, companies};
 }
 
+export function loadOneCompanySuccess(company) {
+  return {type: types.LOAD_ONE_COMPANY_SUCCESS, companies};
+}
+
 export function loadCompanies() {
   return dispatch => {
     dispatch(beginAjaxCall());
@@ -33,6 +37,18 @@ export function saveCompany(company) {
         dispatch(createCompanySuccess(company));
     }).catch(error => {
       dispatch(ajaxCallError(error));
+      throw(error);
+    });
+  };
+}
+
+export function loadOneCompany(companyId) {
+  console.log("loadOneCompnayId", companyId)
+  return dispatch => {
+    dispatch(beginAjaxCall());
+    return companyApi.getOneCompany(companyId).then(company => {
+      dispatch(loadOneCompanySuccess(company));
+    }).catch(error => {
       throw(error);
     });
   };
