@@ -30,7 +30,6 @@ export function loadCompanies() {
 }
 
 export function saveCompany(company) {
-  console.log("companyActions save", company)
   return (dispatch, getState) => {
     dispatch(beginAjaxCall());
     return companyApi.saveCompany(company).then(company => {
@@ -44,7 +43,6 @@ export function saveCompany(company) {
 }
 
 export function loadOneCompany(companyId) {
-  console.log("loadOneCompnayId", companyId)
   return dispatch => {
     dispatch(beginAjaxCall());
     return companyApi.getOneCompany(companyId).then(company => {

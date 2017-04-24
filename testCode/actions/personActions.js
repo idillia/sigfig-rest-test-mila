@@ -44,7 +44,6 @@ export function savePerson(person) {
 export function deletePerson(person) {
   return (dispatch) => {
     return personApi.deletePerson(person).then(() => {
-      console.log(`Deleted ${person._id}`)
       dispatch(deletePersonSuccess(person));
     }).catch(error => {
       dispatch(ajaxCallError(error));

@@ -28,7 +28,7 @@ class PeoplePage extends React.Component {
     const {people} = this.props;
     return (
       <div className = "card">
-        <h2 className ="card-header">People</h2>  
+        <h2 className ="card-header">People </h2>  
         <button className="btn btn-info btn-block" type="submit" onClick={this.redirectToAddPersonPage}>Add Person</button>
         <div className="card-block">
           <div><PersonList people={people} /></div>

@@ -1,10 +1,4 @@
-import delay from './delay';
 import axios from 'axios';
-
-
-const generateId = (person) => {
-  return person.firstName.toLowerCase() + '-' + person.lastName.toLowerCase();
-};
 
 class PersonApi {
   static getAllPeople(companyId) {
@@ -23,7 +17,7 @@ class PersonApi {
 
   static savePerson(person) {
       var url = 'http://localhost:3001/person/';
-      var query = { name: person.name, address: person.email, companyId: person.companyId};
+      var query = { name: person.name, email: person.email, companyId: person.companyId};
       person = Object.assign({}, person);
       return new Promise((resolve, reject) => {
         if(person._id) {    
@@ -51,7 +45,7 @@ class PersonApi {
     return new Promise((resolve, reject) => {
       axios.delete(url)
         .then(function (response) {
-          console.log("person deleted", response.data);
+          // console.log("person deleted", response.data);
           resolve();
         })
         .catch(function (error) {

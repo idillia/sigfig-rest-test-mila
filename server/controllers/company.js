@@ -10,10 +10,6 @@ exports.findAll = function(req, res) {
 };
 
 exports.findById = function(req, res) {
-	console.log("compnay.findById Req", req.params.id);
-	console.log("compnay.findById Req", req.body);
-
-	console.log('compnay.findById')
 	var id = req.params.id;
 	Company.findOne({'_id': id}, function(err, result) {
 		res.send(result);
@@ -21,8 +17,6 @@ exports.findById = function(req, res) {
 };
 
 exports.add = function(req, res) {
-		console.log("compnay.add")
-
 	Company.create(req.body, function(err, company) {
 		if (err) {
 			return console.log(err);
@@ -33,8 +27,6 @@ exports.add = function(req, res) {
 };
 
 exports.update = function(req, res) {
-	console.log("compnay.update Req", req.params.id);
-	console.log("compnay.update Req", req.body);
 	var id = req.params.id;
 	var updates = req.body;
 

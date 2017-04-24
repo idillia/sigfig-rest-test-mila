@@ -52,7 +52,6 @@ export class ManagePersonPage extends React.Component {
   }
 
   savePerson(event) {
-
     event.preventDefault();
     if(!this.companyFormIsValid()) {
       return;
