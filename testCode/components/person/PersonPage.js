@@ -19,15 +19,15 @@ export class PersonPage extends React.Component {
   }
 
   deletePerson() {
-        console.log("called", this.state.person)
-
+    console.log("called", this.state.person)
     this.props.actions.deletePerson(this.state.person._id)
+    browserHistory.push('/companies/'+ this.state.person.companyId + '/people');
   }
   render() {
     const {person} = this.props;
     return (
     <div> 
-     <button onClick={this.deletePerson} className="btn btn-default  ">delete</button>
+     <button onClick={this.deletePerson} className="btn btn-info btn-block">delete</button>
     <PersonListRow person = {person} />
     </div>
     );

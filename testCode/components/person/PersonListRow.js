@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 
 const PersonListRow = ({person}) => {
-  // console.log(onDelete(event, "123"))
   return (
     <div className = "card">
       <div className = "card-header card-title">
