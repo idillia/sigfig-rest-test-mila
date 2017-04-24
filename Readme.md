@@ -4,7 +4,7 @@
 React, Redux, React-Redux, React-Router, Redux-thunk, Axios, Webpack
 
 ## Download dependencies and run two servers
-Git clone repo http://github.com/idillia/sigfig-rest-test-mila.git
+Git clone repo https://github.com/idillia/sigfig-rest-test-mila.git
 cd sigfig-rest-test-mila
 npm install
 
