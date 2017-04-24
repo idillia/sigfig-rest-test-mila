@@ -21,6 +21,8 @@
     "babel-polyfill": "6.8.0",
     "body-parser": "^1.17.1",
     "bootstrap": "^4.0.0-alpha.6",
+    "cheerio": "^0.22.0",
+    "colors": "^1.1.2",
     "cors": "^2.8.3",
     "express": "4.x",
     "jquery": "2.2.3",
