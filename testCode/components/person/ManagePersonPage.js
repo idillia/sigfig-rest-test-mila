@@ -5,6 +5,8 @@ import * as personActions from '../../actions/personActions';
 import PersonForm from './PersonForm';
 import toastr from 'toastr';
 import {companiesFormattedForDropdown} from '../selectors/selectors';
+import {browserHistory} from 'react-router';
+
 
 
 export class ManagePersonPage extends React.Component {
@@ -19,6 +21,7 @@ export class ManagePersonPage extends React.Component {
 
     this.updatePersonState = this.updatePersonState.bind(this);
     this.savePerson = this.savePerson.bind(this);
+    this.deletePerson = this.deletePerson.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -70,19 +73,28 @@ export class ManagePersonPage extends React.Component {
     this.setState({saving: false});
     toastr.success('Person saved');
     window.location.reload();
-    this.context.router.push('/companies/' + this.state.person.companyId + '/people');
+    // browserHistory.push('/companies/'+ this.state.person.companyId + '/people');
+    this.context.router.push('/');
+  }
+
+  deletePerson() {
+    this.props.actions.deletePerson(this.state.person._id);
+    browserHistory.push('/companies/'+ this.state.person.companyId + '/people');
   }
  
   render() {
     return (
-      <PersonForm 
-        allCompanies={this.props.companies}
-        onChange={this.updatePersonState}
-        onSave={this.savePerson}
-        person={this.state.person}
-        errors={this.state.errors}
-        saving={this.state.saving}
-      />
+      <div>
+        <button onClick={this.deletePerson} className="btn btn-info btn-block">delete</button>
+        <PersonForm 
+          allCompanies={this.props.companies}
+          onChange={this.updatePersonState}
+          onSave={this.savePerson}
+          person={this.state.person}
+          errors={this.state.errors}
+          saving={this.state.saving}
+        />
+      </div>  
     );
   }
 }

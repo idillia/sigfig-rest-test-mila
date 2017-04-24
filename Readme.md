@@ -29,4 +29,5 @@ Navigate:
 [x] Bonus: make the site responsive
 [x] Fixed some bugs in Swagger docs
 [x] Configure webpack for production 
-[ ] Replace all "localhost" with API_HOST
+[ ] Replace all "localhost" in companyApi and personApi with API_HOST
+[ ] Proper routes handling
