@@ -22,7 +22,6 @@ exports.add = function(req, res) {
 };
 
 exports.update = function(req, res) {
-	console.log(req,res);
 	var id = req.params.id;
   var updates = req.body;
 
