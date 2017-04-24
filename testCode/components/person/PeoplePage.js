@@ -9,81 +9,71 @@ import {Link} from 'react-router';
 
 
 class PeoplePage extends React.Component {
-
-    constructor(props, context) {
+  constructor(props, context) {
     super(props, context);
     this.state = {
-      people: Object.assign({}, this.props.people),
-      errors: {},
-      saving: false
+      people: Object.assign({}, this.props.people)
     };
-
-    // this.loadPeople = this.loadPeople.bind(this);
-    // this.onClickSave = this.onClickSave.bind(this);
+    this.redirectToAddPersonPage = this.redirectToAddPersonPage.bind(this);
   }
+
+  redirectToAddPersonPage() {
+    browserHistory.push('/edit/person');
+  }
+
   componentDidMount() {
-    // if (__CLIENT__) {
-    //     // initialize google map here
-
-    // }
-    console.log("hello")
-        this.props.dispatch(personActions.loadPeople(this.props.params.id))
-
-}
-
+    this.props.dispatch(personActions.loadPeople(this.props.params.id))
+  }
 
   componentWillReceiveProps(nextProps) {
-    console.log("nextPR", nextProps)
-        if(this.props.people != nextProps.people) {
-
-      this.setState({people: Object.assign({}, nextProps.people)});
-    }
+    // console.log("PP this.props.people",this.props)
+    // console.log("PP nextProps.people",nextProps)
+    // console.log("the same: ", this.props.people == nextProps.people)
+    // if(this.props.people != nextProps.people) {
+    //   console.log("setting state this.props.people")
+    //   this.setState({people: Object.assign({}, this.props.people)});
+    // }
+  }
+  shouldComponentUpdate(nextProps, nextState){
+    return true;
   }
 
-    componentWillUpdate(nextProps, nextState) {
-      if(this.props != nextProps) {
-              console.log("cwu", nextProps)
-
-      }
-    }
-
-
-
-
-
-
+  componentWillUpdate(nextProps, nextState) {
+    // console.log("cwuPP this.state.people",nextState)
+    // console.log("cwuPP nextProps.people",nextProps)
+    //     if(this.props.people != nextProps.people) {
+    //   console.log("setting state this.props.people")
+    //   this.setState({people: Object.assign({}, nextState)});
+    // }
+  }
 
   render() {
-    // const people= "help";
-
-    if (this.props.people[0] != "undefiend"){
-      console.log("this.props", this.props.people)
-       const {people} = this.props;
-
-    }
-       const {people} = this.props;
-
-        console.log("statew", this.state)
-          var a = this.props.people
-          console.log("tp",  a)
+    const {people} = this.props;
     return (
+      <div className = "card">
+        <h2 className ="card-header">People</h2> 
+        <div type="submit"
+        value="Add Person"
+        className="card-header"
+        onClick={this.redirectToAddPersonPage}>Add Person</div>
+        <div className="card-block">
+        
       <div><PersonList people={people} /></div>
+      </div>
+     </div> 
     );
   }
 }
-
 
 PeoplePage.propTypes = {
   people: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
-  console.log("state in PeoplePage", state)
-
+  console.log("state.people", state)
   return {
     people: state.people
   };
 }
 
-// export default PeoplePage;
 export default connect(mapStateToProps)(PeoplePage);

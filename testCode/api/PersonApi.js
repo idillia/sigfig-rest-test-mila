@@ -13,53 +13,50 @@ class PersonApi {
       axios.get(url)
         .then(function (response) {
           resolve(Object.assign([], response.data));
-          console.log("get all people", response.data);
+          // console.log("get all people", response.data);
         })
         .catch(function (error) {
           console.log(error);
         });
     });
-   
   }
 
   static savePerson(person) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        // Simulate server-side validation
-        const minPersonNameLength = 3;
-        if (person.firstName.length < minPersonNameLength) {
-          reject(`First Name must be at least ${minPersonNameLength} characters.`);
-        }
-
-        if (person.lastName.length < minPersonNameLength) {
-          reject(`Last Name must be at least ${minPersonNameLength} characters.`);
-        }
-
-        if (person.id) {
-          const existingPersonIndex = people.findIndex(a => a.id == person.id);
-          people.splice(existingPersonIndex, 1, person);
+      var url = 'http://localhost:3001/person/';
+      var query = { name: person.name, address: person.email, companyId: person.companyId};
+      person = Object.assign({}, person);
+      return new Promise((resolve, reject) => {
+        if(person._id) {    
+          url = url + person._id;
+          axios.put(url, query)
+            .then(function(response){
+              // console.log('person updated', response.data)
+            }).catch(function (error) {
+              console.log(error);
+            })
         } else {
-          //Just simulating creation here.
-          //The server would generate ids for new people in a real app.
-          //Cloning so copy returned is passed by value rather than by reference.
-          person.id = generateId(person);
-          people.push(person);
+          axios.post(url, query)
+            .then(function(response){
+            // console.log('person posted', response.data)
+          }).catch(function (error) {
+            console.log(error);
+          });  
         }
+        resolve(person);
+      });
+  }    
 
-        resolve(Object.assign({}, person));
-      }, delay);
-    });
-  }
-
-  static deleteAuthor(personId) {
+  static deletePerson(personId) {
+    var url = 'http://localhost:3001/person/' + personId;
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const indexOfPersonToDelete = people.findIndex(person => {
-          person.personId == personId;
+      axios.delete(url)
+        .then(function (response) {
+          console.log("person deleted", response.data);
+          resolve();
+        })
+        .catch(function (error) {
+          console.log(error);
         });
-        people.splice(indexOfPersonToDelete, 1);
-        resolve();
-      }, delay);
     });
   }
 }

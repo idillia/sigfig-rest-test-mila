@@ -30,10 +30,11 @@ export function loadCompanies() {
 }
 
 export function saveCompany(company) {
+  console.log("companyActions save", company)
   return (dispatch, getState) => {
     dispatch(beginAjaxCall());
     return companyApi.saveCompany(company).then(company => {
-      company.id ? dispatch(updateCompanySuccess(company)) :
+      company._id ? dispatch(updateCompanySuccess(company)) :
         dispatch(createCompanySuccess(company));
     }).catch(error => {
       dispatch(ajaxCallError(error));

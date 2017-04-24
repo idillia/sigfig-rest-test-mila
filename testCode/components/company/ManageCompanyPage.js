@@ -46,6 +46,7 @@ export class ManageCompanyPage extends React.Component {
   }
 
   saveCompany(event) {
+    console.log(this.state)
     event.preventDefault();
     if(!this.companyFormIsValid()) {
       return;
@@ -63,7 +64,7 @@ export class ManageCompanyPage extends React.Component {
   redirect() {
     this.setState({saving: false});
     toastr.success('Company saved');
-    window.location.reload()  
+    // window.location.reload()  
     this.context.router.push('/companies');
   }
  

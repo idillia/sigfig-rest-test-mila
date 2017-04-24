@@ -18,6 +18,8 @@ class CompanyApi {
   }
 
   static saveCompany(company) {
+          console.log("saveCompnay", company)
+
     var url = 'http://localhost:3001/companies/';
     var query = { name: company.name, address: company.address, phone: company.phone, revenue: company.revenue};
     company = Object.assign({}, company);
@@ -26,18 +28,19 @@ class CompanyApi {
         url = url + company._id;
         axios.put(url, query)
           .then(function(response){
-            // console.log('company updated', response.data)
+            console.log('company updated', response.data)
           }).catch(function (error) {
             console.log(error);
           })
       } else {
         axios.post(url, query)
           .then(function(response){
-          // console.log('company posted', response.data)
+          console.log('company posted', response.data)
         }).catch(function (error) {
           console.log(error);
         });  
       }
+      console.log("api", company)
       resolve(company);
     });
   }

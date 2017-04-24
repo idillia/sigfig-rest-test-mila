@@ -6,18 +6,21 @@ export default function personReducer(state = initialState.people, action) {
     case types.LOAD_PEOPLE_SUCCESS: 
       return action.people;
     case types.CREATE_PERSON_SUCCESS:
-      // debugger;
       return [
         ...state,
         Object.assign({}, action.people)
       ];
     case types.UPDATE_PERSON_SUCCESS:
-      // debugger;
       return  [
-        ...state.filter(person => person.id !== action.people.id),
+        ...state.filter(person => person._id !== action.people._id),
         Object.assign({}, action.people)
       ];   
-      
+    case types.DELETE_PERSON_SUCCESS: {
+      return  [
+        ...state.filter(person => person._id !== action.people._id),
+        Object.assign({}, action.people)
+      ]; 
+    } 
     default:
       return state;
   }

@@ -22,7 +22,10 @@ export class ManagePersonPage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.person.id != nextProps.person.id) {
+    console.log("mpp this.props.people",this.props.person)
+    console.log("mpp nextProps.people",nextProps.person)
+    // console.log("the same:", this.prop.person === nextProps.person)
+    if(this.props.person._id != nextProps.person._id) {
       this.setState({person: Object.assign({}, nextProps.person)});
     }
   }
@@ -38,8 +41,13 @@ export class ManagePersonPage extends React.Component {
     let formIsValid = true;
     let errors = {};
 
-    if(this.state.person.name.length < 3) {
-      errors.name = 'Comapany name must be at least 3 characters.';
+    if(this.state.person.name.length < 2) {
+      errors.name = 'Person\'s name must be at least 2 characters';
+      formIsValid = false;
+    }
+
+    if(this.state.person.companyId == "") {
+      errors.companyId = 'Select company';
       formIsValid = false;
     }
     this.setState({errors:errors});
@@ -47,6 +55,7 @@ export class ManagePersonPage extends React.Component {
   }
 
   savePerson(event) {
+
     event.preventDefault();
     if(!this.companyFormIsValid()) {
       return;
@@ -58,28 +67,26 @@ export class ManagePersonPage extends React.Component {
       .catch(error => {
         toastr.error(error);
         this.setState({saving: false});
-
       });
   }
 
   redirect() {
+    // console.log("personCompId", this.state.perso)
     this.setState({saving: false});
-    toastr.success('Company saved');
-     window.location.reload()  
-    this.context.router.push('/people');
+    toastr.success('Person saved');
+    this.context.router.push('/companies/' + this.state.person.companyId + '/people');
   }
  
   render() {
-   console.log( this.props)
     return (
-        <PersonForm 
-          allCompanies={this.props.companies}
-          onChange={this.updatePersonState}
-          onSave={this.savePerson}
-          person={this.state.person}
-          errors={this.state.errors}
-          saving={this.state.saving}
-        />
+      <PersonForm 
+        allCompanies={this.props.companies}
+        onChange={this.updatePersonState}
+        onSave={this.savePerson}
+        person={this.state.person}
+        errors={this.state.errors}
+        saving={this.state.saving}
+      />
     );
   }
 }
@@ -102,7 +109,7 @@ function getPersonById(people, id) {
 
 function mapStateToProps(state, ownProps) {
   const personId = ownProps.params.id;
-  let person = {name: '', email: '', _id: ''};
+  let person = {name: '', email: '', companyId: '', _id:''};
 
   if(personId && state.people.length > 0) {
     person = getPersonById(state.people, personId);
