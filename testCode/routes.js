@@ -11,9 +11,8 @@ import CompanyPage from './components/company/CompanyPage'; //eslint-disable-lin
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={HomePage} />
     <Route path="companies/:id/people" component={PeoplePage} />
-    <Route path="companies" component={CompaniesPage} />
+    <IndexRoute component={CompaniesPage} />
     <Route path="edit/company" component={ManageCompanyPage} />
     <Route path="edit/person" component={ManagePersonPage} />
 

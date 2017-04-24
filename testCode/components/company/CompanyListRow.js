@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
-import CompanyPage from './companyPage';
+import CompanyPage from './CompanyPage';
 
 const CompanyListRow = ({company}) => {
   return (

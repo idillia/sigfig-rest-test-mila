@@ -18,11 +18,12 @@ App.propTypes = {
   children: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownPros) {
-  return {
-    loading: state.numAjaxCallsInProgress > 0
-  };
-}
+// function mapStateToProps(state, ownPros) {
+//   return {
+//     loading: state.numAjaxCallsInProgress > 0
+//   };
+// }
 
-export default connect(mapStateToProps)(App);
+export default App;
+// export default connect(mapStateToProps)(App);
 

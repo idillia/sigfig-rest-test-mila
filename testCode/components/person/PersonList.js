@@ -2,11 +2,11 @@ import React, {PropTypes} from 'react';
 import PersonListRow from './PersonListRow';
 
 const PersonList = ({people}) => {
-  console.log("PersonList", people)
+
   return (
     <div>
         {people.map(person => 
-          <PersonListRow key={person._id} person={person}/>
+          <PersonListRow key={person._id} person={person} />
         )}
     </div>
   );

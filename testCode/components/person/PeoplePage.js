@@ -12,10 +12,32 @@ class PeoplePage extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      people: Object.assign({}, this.props.people)
+      people: Object.assign({}, this.props.people),
+      deleting: {},
+      error: false
     };
     this.redirectToAddPersonPage = this.redirectToAddPersonPage.bind(this);
+    
   }
+
+   deletePerson(event, id) {
+
+    console.log("deleting")
+    this.setState({deleting: true});
+    this.props.dispatch(personActions.deletePerson(id))
+      .then(() => this.redirect())
+      .catch(error => {
+        toastr.error(error);
+        this.setState({saving: false});
+      });
+  }
+
+
+  // newFn() {
+  //   var args = Array.prototype.slice.call(arguments);
+
+  //   this.deletePerson.apply(this, args);
+  //  }
 
   redirectToAddPersonPage() {
     browserHistory.push('/edit/person');
@@ -26,32 +48,22 @@ class PeoplePage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log("PP this.props.people",this.props)
-    // console.log("PP nextProps.people",nextProps)
-    // console.log("the same: ", this.props.people == nextProps.people)
-    // if(this.props.people != nextProps.people) {
-    //   console.log("setting state this.props.people")
-    //   this.setState({people: Object.assign({}, this.props.people)});
-    // }
+
   }
   shouldComponentUpdate(nextProps, nextState){
     return true;
   }
 
   componentWillUpdate(nextProps, nextState) {
-    // console.log("cwuPP this.state.people",nextState)
-    // console.log("cwuPP nextProps.people",nextProps)
-    //     if(this.props.people != nextProps.people) {
-    //   console.log("setting state this.props.people")
-    //   this.setState({people: Object.assign({}, nextState)});
-    // }
+
   }
 
   render() {
+    // console.log("PeoplePage",this.newFn)
     const {people} = this.props;
     return (
       <div className = "card">
-        <h2 className ="card-header">People</h2> 
+        <h2 className ="card-header">People</h2>  
         <div type="submit"
         value="Add Person"
         className="card-header"
@@ -65,12 +77,13 @@ class PeoplePage extends React.Component {
   }
 }
 
+
+
 PeoplePage.propTypes = {
   people: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
-  console.log("state.people", state)
   return {
     people: state.people
   };

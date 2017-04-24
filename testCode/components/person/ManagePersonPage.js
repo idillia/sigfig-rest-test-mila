@@ -22,9 +22,6 @@ export class ManagePersonPage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("mpp this.props.people",this.props.person)
-    console.log("mpp nextProps.people",nextProps.person)
-    // console.log("the same:", this.prop.person === nextProps.person)
     if(this.props.person._id != nextProps.person._id) {
       this.setState({person: Object.assign({}, nextProps.person)});
     }
@@ -71,9 +68,9 @@ export class ManagePersonPage extends React.Component {
   }
 
   redirect() {
-    // console.log("personCompId", this.state.perso)
     this.setState({saving: false});
     toastr.success('Person saved');
+    window.location.reload();
     this.context.router.push('/companies/' + this.state.person.companyId + '/people');
   }
  

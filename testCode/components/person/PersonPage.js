@@ -1,13 +1,34 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import PersonListRow from './PersonListRow';
+// import DeletePerson from './DeletePerson'; 
+import {bindActionCreators} from 'redux';
+import * as personActions from '../../actions/personActions';
+
+
+
 
 export class PersonPage extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      person: Object.assign({}, this.props.person), 
+
+    };
+    this.deletePerson = this.deletePerson.bind(this);
+  }
+
+  deletePerson() {
+        console.log("called", this.state.person)
+
+    this.props.actions.deletePerson(this.state.person._id)
+  }
   render() {
     const {person} = this.props;
     return (
-    <div className = "card">
-      <PersonListRow person = {person} />
+    <div> 
+     <button onClick={this.deletePerson} className="btn btn-default  ">delete</button>
+    <PersonListRow person = {person} />
     </div>
     );
   }
@@ -37,5 +58,11 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(personActions, dispatch)
+  };
+}
 
-export default connect(mapStateToProps)(PersonPage);
+
+export default connect(mapStateToProps, mapDispatchToProps)(PersonPage);

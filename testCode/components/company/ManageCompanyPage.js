@@ -65,10 +65,11 @@ export class ManageCompanyPage extends React.Component {
     this.setState({saving: false});
     toastr.success('Company saved');
     // window.location.reload()  
-    this.context.router.push('/companies');
+    this.context.router.push('/');
   }
  
   render() {
+    console.log(this.saveCompany)
     return (
         <CompanyForm 
           onChange={this.updateCompanyState}

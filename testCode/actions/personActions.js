@@ -14,8 +14,8 @@ export function updatePersonSuccess(people) {
   return {type: types.UPDATE_PERSON_SUCCESS, people};
 }
 
-export function deletePersonSuccess(people) {
-  return {type: types.DELETE_PERSON_SUCCESS, people};
+export function deletePersonSuccess(person) {
+  return {type: types.DELETE_PERSON_SUCCESS, person};
 }
 
 export function loadPeople(companyId) {
@@ -30,8 +30,7 @@ export function loadPeople(companyId) {
 }
 
 export function savePerson(person) {
-  return (dispatch, getState) => {
-    dispatch(beginAjaxCall());
+  return (dispatch) => {
     return personApi.savePerson(person).then(person => {
       person._id ? dispatch(updatePersonSuccess(person)) :
         dispatch(createPersonSuccess(person));
@@ -42,11 +41,11 @@ export function savePerson(person) {
   };
 }
 
-export function deletePerson(personId) {
-  return (dispatch, getState) => {
-    dispatch(beginAjaxCall());
-    return personApi.deletePerson(personId).then(personId => {
-      dispatch(deletePersonSuccess(personId));
+export function deletePerson(person) {
+  return (dispatch) => {
+    return personApi.deletePerson(person).then(() => {
+      console.log(`Deleted ${person._id}`)
+      dispatch(deletePersonSuccess(person));
     }).catch(error => {
       dispatch(ajaxCallError(error));
       throw(error);
