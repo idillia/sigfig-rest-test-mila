@@ -4,7 +4,7 @@
   "scripts": {
     "mongo": "mongod --dbpath data/db",
     "devServer": "babel-node server/devServer.js",
-    "pro": "npm run prebuild build",
+    "pro": "npm run prebuild build postbuild",
     "server": "cd server && node server.js",
     "start": "npm run mongo & sleep 3 & npm run server",
     "clean-dist": "npm run remove-dist && mkdir dist",

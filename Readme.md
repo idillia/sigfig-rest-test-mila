@@ -8,9 +8,9 @@ Git clone repo http://github.com/idillia/sigfig-rest-test-mila.git
 cd sigfig-rest-test-mila
 npm install
 
-In the same folder from differnt tabs run:
+In the same folder from differnt tabs in terminal run:
   npm run start 
-  npm run pro 
+  npm run devServer 
 
 Navigate:
   http://localhost:3002/  
@@ -28,3 +28,6 @@ Navigate:
 [x] Create a new person, associating them to an existing company
 [x] Bonus: make the site responsive
 [x] Fixed some bugs in Swagger docs
+[x] Configure webpack for production 
+[ ] Successfuly bundle for production
+[ ] Fix person email input, rerendering react components when params change

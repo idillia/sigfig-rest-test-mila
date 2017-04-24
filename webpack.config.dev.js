@@ -3,18 +3,16 @@ import path from 'path';
 
 export default {
   debug: true,
-  // devtool: 'cheap-module-eval-source-map', // TODO: cheap-module-eval-sourse-map gives a warning in Chrome 50.0.2661
   devtool: 'eval-source-map',
   noInfo: false,
   entry: [
-    'eventsource-polyfill', // necessary for hot reloading with IE
-    'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
+    'eventsource-polyfill',
+    'webpack-hot-middleware/client?reload=true', 
     './testCode/index'
   ],
   target: 'web',
-  // context: path.resolve(__dirname, '..'),
   output: {
-    path: __dirname + '/dist', // Note: Physical files are only output by the production build task `npm run build`.
+    path: __dirname + '/dist', 
     publicPath: '/',
     filename: 'bundle.js'
   },
