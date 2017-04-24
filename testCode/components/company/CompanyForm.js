@@ -54,14 +54,3 @@ CompanyForm.propTypes = {
 };
 
 export default CompanyForm;
-
-
-
-      // <SelectInput
-      //   name="personId"
-      //   label="Person"
-      //   value={company.personId}
-      //   defaultOption="SelectPerson"
-      //   options={allPeople} 
-      //   onChange={onChange}
-      //   error={errors.authorId} />

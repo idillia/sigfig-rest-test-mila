@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
-import CompanyPage from './CompanyPage';
 
 const CompanyListRow = ({company}) => {
   return (
@@ -23,7 +22,6 @@ const CompanyListRow = ({company}) => {
     </div>
   );
 }; 
-
 
 CompanyListRow.propTypes = {
   company: PropTypes.object.isRequired

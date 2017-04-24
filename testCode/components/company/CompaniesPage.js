@@ -20,10 +20,7 @@ class CompaniesPage extends React.Component {
     return (
       <div className = "card">
         <h2 className ="card-header">Companies</h2> 
-        <div type="submit"
-                 value="Add Company"
-                 className="card-header"
-                 onClick={this.redirectToAddCompanyPage}>Add Company</div>
+        <button className="btn btn-info btn-block" type="submit" onClick={this.redirectToAddCompanyPage}>Add Company</button>
         <div className="card-block">
           <CompanyList companies={companies} />
         </div>

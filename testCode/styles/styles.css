@@ -22,3 +22,18 @@ nav {
   font-weight: bold ! important;
 }
 
+.company-btn {
+  display:flex;
+  flex-direction:row;
+  justify-content: flex-end;
+}
+
+.company-btn > .btn {
+  width: 20%;
+  display:flex;
+  flex-direction:column;
+}
+
+.btn-block+.btn-block {
+  margin-top: 0 ! important;
+}

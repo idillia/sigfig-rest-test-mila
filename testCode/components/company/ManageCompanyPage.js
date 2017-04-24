@@ -30,6 +30,8 @@ export class ManageCompanyPage extends React.Component {
     const field = event.target.name;
     let company = this.state.company;
     company[field] = event.target.value;
+     
+
     return this.setState({company:company});
   }
 
@@ -46,7 +48,6 @@ export class ManageCompanyPage extends React.Component {
   }
 
   saveCompany(event) {
-    console.log(this.state)
     event.preventDefault();
     if(!this.companyFormIsValid()) {
       return;
@@ -64,20 +65,19 @@ export class ManageCompanyPage extends React.Component {
   redirect() {
     this.setState({saving: false});
     toastr.success('Company saved');
-    // window.location.reload()  
+    window.location.reload();
     this.context.router.push('/');
   }
  
   render() {
-    console.log(this.saveCompany)
     return (
-        <CompanyForm 
-          onChange={this.updateCompanyState}
-          onSave={this.saveCompany}
-          company={this.state.company}
-          errors={this.state.errors}
-          saving={this.state.saving}
-        />
+      <CompanyForm 
+        onChange={this.updateCompanyState}
+        onSave={this.saveCompany}
+        company={this.state.company}
+        errors={this.state.errors}
+        saving={this.state.saving}
+      />
     );
   }
 }

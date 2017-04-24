@@ -4,9 +4,6 @@ import {bindActionCreators} from 'redux';
 import * as personActions from '../../actions/personActions';
 import PersonList from './PersonList';
 import {browserHistory} from 'react-router';
-import Test from './test'
-import {Link} from 'react-router';
-
 
 class PeoplePage extends React.Component {
   constructor(props, context) {
@@ -17,70 +14,35 @@ class PeoplePage extends React.Component {
       error: false
     };
     this.redirectToAddPersonPage = this.redirectToAddPersonPage.bind(this);
-    
   }
 
-   deletePerson(event, id) {
-
-    console.log("deleting")
-    this.setState({deleting: true});
-    this.props.dispatch(personActions.deletePerson(id))
-      .then(() => this.redirect())
-      .catch(error => {
-        toastr.error(error);
-        this.setState({saving: false});
-      });
+  componentDidMount() {
+    this.props.actions.loadPeople(this.props.params.id);
   }
-
-
-  // newFn() {
-  //   var args = Array.prototype.slice.call(arguments);
-
-  //   this.deletePerson.apply(this, args);
-  //  }
 
   redirectToAddPersonPage() {
     browserHistory.push('/edit/person');
   }
 
-  componentDidMount() {
-    this.props.dispatch(personActions.loadPeople(this.props.params.id))
-  }
-
-  componentWillReceiveProps(nextProps) {
-
-  }
-  shouldComponentUpdate(nextProps, nextState){
-    return true;
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-
-  }
-
   render() {
-    // console.log("PeoplePage",this.newFn)
     const {people} = this.props;
     return (
       <div className = "card">
         <h2 className ="card-header">People</h2>  
-        <div type="submit"
-        value="Add Person"
-        className="card-header"
-        onClick={this.redirectToAddPersonPage}>Add Person</div>
+        <button className="btn btn-info btn-block" type="submit" onClick={this.redirectToAddPersonPage}>Add Person</button>
         <div className="card-block">
-        
-      <div><PersonList people={people} /></div>
-      </div>
+          <div><PersonList people={people} /></div>
+        </div>
      </div> 
     );
   }
 }
 
 
-
 PeoplePage.propTypes = {
-  people: PropTypes.array.isRequired
+  people: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
+
 };
 
 function mapStateToProps(state, ownProps) {
@@ -89,4 +51,10 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(PeoplePage);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(personActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PeoplePage);

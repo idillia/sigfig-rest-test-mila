@@ -1,7 +1,6 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 import App from './components/App';
-import HomePage from './components/home/HomePage';
 import CompaniesPage from './components/company/CompaniesPage';
 import PeoplePage from './components/person/PeoplePage';
 import PersonPage from './components/person/PersonPage'; //eslint-disable-line import/no-named-as-default

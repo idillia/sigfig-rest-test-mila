@@ -1,27 +1,30 @@
 # SigFig take home test instructions
 
-## pre reqs
-Install brew, node, npm & mongo. On OSX the commands below should work.
+## Main libraries
+React, Redux, React-Redux, React-Router, Redux-thunk, Axios, Webpack
 
-```
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew doctor #fix all issues
-brew update
-brew install node
-brew install mongodb
-```
-
-## download dependencies and run server
-From your project folder run the following
-```
+## Download dependencies and run two servers
+Git clone repo http://github.com/idillia/sigfig-rest-test-mila.git
+cd sigfig-rest-test-mila
 npm install
-npm run start
-```
-* navigate to http://localhost:3001/testCode/index.html
-* do you work within the testCode directory
 
-## submit your work
-submit your testCode directory, and anything else you've built as a zip file back to your recruiter. If running your solution will require the grader to do anything beyond dropping your testCode directory into a running node server, let us know.
+In the same folder from differnt tabs run:
+  npm run start 
+  npm run pro 
 
-## questions/troubleshooting setup issues
-Ping you're recruiter and they'll help you get it working
+Navigate:
+  http://localhost:3002/  
+
+## Complited tasks: 
+
+[x] Show a list of companies
+[x] Show the details/full record of an existing company
+[x] Create a new company
+[x] Edit an existing company's record
+[x] Show a list of people who work at a given company
+[x] Show the details for a specific person
+[x] Edit a person's record
+[x] Delete a person record
+[x] Create a new person, associating them to an existing company
+[x] Bonus: make the site responsive
+[x] Fixed some bugs in Swagger docs
